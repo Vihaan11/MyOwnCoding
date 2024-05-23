@@ -74,11 +74,11 @@ while game_on:
     print(f"Round {round_num}")
 
     if len(player_one.my_cards)==0:
-        print("Player Two wins")
+        print("Player One doesn't have enough cards! Player Two wins")
         game_on=False
         break
     if len(player_two.my_cards)==0:
-        print("Player One wins")
+        print("Player One doesn't have enough cards! Player One wins")
         game_on=False
         break
 
@@ -105,4 +105,23 @@ while game_on:
 
             at_war=False
 
+        else:
+            print("WAR!")
+            if len(player_one.my_cards) < 5:
+                print("Player One unable to fight war")
+                print("Player Two wins!")
 
+                game_on = False
+                break
+
+            elif len(player_two.my_cards) < 5:
+                print("Player Two unable to fight war")
+                print("Player One wins!")
+
+                game_on = False
+                break
+
+            else:
+                for num in range(3):
+                    player_one_cards.append(player_one.remove_one())
+                    player_two_cards.append(player_two.remove_one())
