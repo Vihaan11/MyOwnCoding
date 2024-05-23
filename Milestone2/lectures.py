@@ -49,7 +49,7 @@ class Player:
     def remove_one(self):
         return self.my_cards.pop(0)
 
-    def add_one(self, new_cards):
+    def add_cards(self, new_cards):
         if type(new_cards) == type([]):
             self.my_cards.extend(new_cards)
         else:
@@ -64,8 +64,8 @@ new_Deck=Deck()
 new_Deck.shuffle_deck()
 
 for x in range(26):
-    player_one.add_one(new_Deck.get_one())
-    player_two.add_one(new_Deck.get_one())
+    player_one.add_cards(new_Deck.get_one())
+    player_two.add_cards(new_Deck.get_one())
 
 round_num=0
 
@@ -87,4 +87,22 @@ while game_on:
     player_one_cards.append(player_one.remove_one())
     player_two_cards=[]
     player_two_cards.append(player_two.remove_one())
+
+    at_war=True
+
+    while at_war:
+        if player_one_cards[-1].value > player_two_cards[-1].value:
+            # Favour of One
+            player_one.add_cards(player_one_cards)
+            player_one.add_cards(player_two_cards)
+
+            at_war=False
+
+        elif player_one_cards[-1].value < player_two_cards[-1].value:
+            # Favour of Two
+            player_two.add_cards(player_one_cards)
+            player_two.add_cards(player_two_cards)
+
+            at_war=False
+
 
