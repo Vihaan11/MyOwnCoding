@@ -58,7 +58,7 @@ class Player:
 game_on=True
 
 player_one=Player("ONE")
-player_two=Player("TWO")k
+player_two=Player("TWO")
 
 new_Deck=Deck()
 new_Deck.shuffle_deck()
@@ -81,3 +81,10 @@ while game_on:
         print("Player One wins")
         game_on=False
         break
+
+    # Start a new round
+    player_one_cards=[]
+    player_one_cards.append(player_one.remove_one())
+    player_two_cards=[]
+    player_two_cards.append(player_two.remove_one())
+
